@@ -39,6 +39,12 @@ Distinct features of fully convolution networks (FCN) are
 
 Here we used average of `IoU` for the two cases when quad is following the target & when target is far away. This `IoU` score is multipled by `TP / (TP + FP + FN)` for the cases when the target is followed, target is out of the picture & target is far away.
 
+### Different Objects
+Imagine a scene where the objects are cat and dogs, in the event we wanted to classify the target as cat, it would work with some limitations as the classification happens based on color channels and spatial features. Consider a following cases and how they affect classification.
+* Target (cat) and the adversarial target (dog) are of same color & different sizes:  The NN would have rely on spatial features of the cat & dog to make accurate classification.
+* Target (cat) and the adversarial target (dog) are of same color & same sizes:  The spatial features and different orientations need to be preserved to avoid false positive & false negatives.
+* Target (dog) and the adbersarial target (cat) are of same colr and sizes, and the cat is on a tree: The NN would fail to make and assertion about the spatial positioning of the target and can producefalse positives.
+
 ### Drawbacks
 Present implentation along with choice of hyperparamter is unable to identify the target from distance, a possible solution is to enrich the dataset with new training points, which I found difficult to gather.
 
