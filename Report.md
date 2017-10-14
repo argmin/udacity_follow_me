@@ -23,6 +23,7 @@ Distinct features of fully convolution networks (FCN) are
 
 ![FCN](fcn.jpg)
 
+The present network built consitsted of 3 layers of encoder and decoder (excluding input and activation) and a `1x1` layer which connected encoder and decoder. 
 
 ### Hyperparameter tuning
 * learning rate = 0.001, higher learning rate didn't perform well where as dropping the learning rate while increasing number of epoch lead to better performance but with increased training time, and hence had to balance this with number of epochs & time taken to train.
@@ -44,6 +45,8 @@ Imagine a scene where the objects are cat and dogs, in the event we wanted to cl
 * Target (cat) and the adversarial target (dog) are of same color & different sizes:  The NN would have rely on spatial features of the cat & dog to make accurate classification.
 * Target (cat) and the adversarial target (dog) are of same color & same sizes:  The spatial features and different orientations need to be preserved to avoid false positive & false negatives.
 * Target (dog) and the adbersarial target (cat) are of same colr and sizes, and the cat is on a tree: The NN would fail to make and assertion about the spatial positioning of the target and can producefalse positives.
+
+Anther point to note is that the case if there are other objects in the current project scenario, they will be just treated as background class.
 
 ### Drawbacks
 Present implentation along with choice of hyperparamter is unable to identify the target from distance, a possible solution is to enrich the dataset with new training points, which I found difficult to gather.
